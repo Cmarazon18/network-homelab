@@ -11,7 +11,62 @@ Rather than installing ad blockers and web filters on each node individually, al
 |**Operating System** | Docker Container inside ubuntu server |
 |**DNS Port** | TCP/UDP 53 |
 |**Admin UI** | HTTP via port 80 (web dashboard)|
+|**Subnet** | `192.168.200.0/24` (lab network) |
+
+Pi-hole runs as a docker container on *pi02*. All lab devices use pi-holes ip address as as their DNS server through pfSense DHCP server configuration, meaning DNS filtering is applied to all devices on the lab subnet without any device-specific configuration.
+
+```
+Lab Device
+    │
+    │  DNS query (port 53)
+    ▼
+Pi-hole (192.168.200.6)
+    │
+    ├── Blocked? → Return NXDOMAIN (sinkhole)
+    │
+    └── Allowed? → Forward to upstream DNS (e.g., 1.1.1.1, 8.8.8.8)
+```
+---
+
 
 ## Configuration
 ### Port 53 Conflict resolution
-*** Setps to resolve port 53 conflict**
+By Default, ubuntu server uses `systemd-resolved`, which binds port 53 on localhost and conflicts with Pi-hole's DNS listener. Therefore, this mus be resolved before deploying the Pi-Hole container.
+**Steps to free port 53**
+```bash
+# Disable the systemd-resolved stub listener
+sudo sed -i 's/#DNSStubListener=yes/DNSStubListener=no/' /etc/systemd/resolved.conf
+ 
+# Restart systemd-resolved to apply the change
+sudo systemctl restart systemd-resolved
+ 
+# Verify port 53 is no longer in use
+sudo ss -tulnp | grep ':53'
+```
+---
+### Docker Compose
+Pi-Hole is deployed using Docker Compose, The container is configured with a fixed IP on a custom docker netowrk to ensure the address stays consistent.
+
+```yaml
+version: "3"
+ 
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+    environment:
+      TZ: "America/New_York"
+      WEBPASSWORD: "changeme"        # Replace with a strong password
+    volumes:
+      - "./etc-pihole:/etc/pihole"
+      - "./etc-dnsmasq.d:/etc/dnsmasq.d"
+    restart: unless-stopped
+```
+>**Note:** Volumes are bind-mounted to the local directory so blocklists and configuration persist across container restarts and updates.
+---
+### Blocklists
+Pi-Hole ships with a default blocklist
