@@ -69,4 +69,7 @@ services:
 >**Note:** Volumes are bind-mounted to the local directory so blocklists and configuration persist across container restarts and updates.
 ---
 ### Blocklists
-Pi-Hole ships with a default blocklist
+Pi-Hole ships with a default blocklist (SevenBlack Unified Hosts) enabled out of the box. Additional lists can be added through the admin UI however under **Group Management -> Adlists**
+## Intregation
+**pfSense DHCP -> Pi-Hole DNS Distribution**
+The correct point to integrate the Pi-Hole DNS server is via the pfSense DHCP server. Therefore, all devices automatically obtian Pi-Hole as their DNS server. 
