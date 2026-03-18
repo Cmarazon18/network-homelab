@@ -55,7 +55,7 @@ This lab is intentionally tied to concepts I learn in class. It is meant to take
     ├── netbox.md
     └── pihole.md
 ```
-Each file in `network/` follows a consistent format: Overview → Architecture → Configuration → Integration → Status → Key Decisions → References.
+Each file in `network/` contains the documentation for that specific aspect of the network.
  
 Each file in `services/` is self-contained documentation for a single deployed service.
 
