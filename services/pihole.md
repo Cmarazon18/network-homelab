@@ -42,9 +42,32 @@ sudo systemctl restart systemd-resolved
 Pi-hole was deployed using the official Docker Compose configuration with
 default settings. The only modification was setting a secure admin password
 in the compose file for the web UI.
+
+```yaml
+version: "3"
+ 
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+    environment:
+      TZ: "America/New_York"
+      WEBPASSWORD: "<your-password-here>"        # Replace with a strong password
+    volumes:
+      - "./etc-pihole:/etc/pihole"
+      - "./etc-dnsmasq.d:/etc/dnsmasq.d"
+    restart: unless-stopped
+```
+>**Note:** Volumes are bind-mounted to the local directory so blocklists and configuration persist across container restarts and updates.
+
 ```bash
 docker compose up -d
 ```
+---
 
 ### 4. Configure pfSense DHCP
 In pfSense, the DHCP server for `192.168.200.0/24` was updated to hand out

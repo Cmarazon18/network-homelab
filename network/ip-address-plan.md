@@ -5,7 +5,7 @@ This document outlines the IP addressing scheme and VLAN segmentation for the ho
 ## Subnets
 |VLAN| Subnet | Purpose | Gateway|
 |---|---|---|---|
-|| VLAN 1 | `192.168.200.0/24` | Main lab network | `192.168.200.1` (pfSense) |
+| VLAN 1 | `192.168.200.0/24` | Main lab network | `192.168.200.1` (pfSense) |
 | VLAN 10 | `192.168.10.0/24` | Security lab (intentionally vulnerable devices) | `192.168.10.1` (pfSense) |
 
 ---
@@ -23,12 +23,12 @@ This document outlines the IP addressing scheme and VLAN segmentation for the ho
  
 Reserved for intentionally vulnerable machines used in cybersecurity testing and learning. This VLAN will be isolated from the main lab network through pfSense firewall rules to prevent lateral movement.
  
-Addressing details will be documented once the VLAN is fullyimplemented.
+Addressing details will be documented once the VLAN is fully implemented.
  
 ---
 
 ## Additional Notes
- - The proxmox host sits on the home network at `192.168.145.200` and bridges traffic into the lab through a virtulized instance of pfSense.
+ - The Proxmox host sits on the home network at `192.168.145.200` and bridges traffic into the lab through a virtualized instance of pfSense.
  - Pi01 and pi02 are classified as infrastructure despite running server-class services (monitoring, DNS, IPAM) because those services directly support lab operations.
 - The `.21–.99` range is intentionally unassigned to allow future expansion for servers or VMs without overlapping the DHCP pool.
 - The `.251–.254` range is reserved for potential future use, such as additional infrastructure devices or special-purpose servers that require static IPs outside the DHCP pool.

@@ -10,7 +10,7 @@ This repository contains all documentation for my personal homelab. It's designe
 
 ## Real world roles I'm practicing
 **Network Engineer**
-I design and operate a segmented lab network run by a virtualized instance of pfSense on a proxmox hypervisor. This includes configuration for DHCP, DNS forwarding, and NAT and Firewall Rules as well as routing across the `192.168.200.0 /24 ` subnet - isolated from my home network and managed separately.
+I design and operate a segmented lab network run by a virtualized instance of pfSense on a proxmox hypervisor. This includes configuration for DHCP, DNS forwarding, and NAT and Firewall Rules as well as routing across the `192.168.200.0/24` subnet - isolated from my home network and managed separately.
 
 **Systems Administrator**
 I manage and deploy services across different types of devices such as Proxmox Hypervisors and Raspberry Pi Servers. Current stack includes, DNS filtering, IP address management, real time system monitoring, and uptime tracking.
@@ -44,12 +44,10 @@ This lab is intentionally tied to concepts I learn in class. It is meant to take
 │   └── roadmap.md
 ├── infrastructure/         ← Physical and virtual hardware documentation
 │   ├── device-inventory.md
-│   ├── overview.md
 │   └── proxmox.md
 ├── network/                ← Network architecture and configuration docs
 │   ├── dns-filtering.md
-│   ├── ip-address-plan.md
-│   └── overview.md
+│   └── ip-address-plan.md
 └── services/               ← Per-service documentation for each deployed component
     ├── monitoring.md
     ├── netbox.md
@@ -67,7 +65,7 @@ Each file in `services/` is self-contained documentation for a single deployed s
 | Pi-hole DNS filtering | ✅ Operational | Confirmed blocking ads lab-wide |
 | Netdata monitoring | ✅ Operational | Running on pi01 |
 | Uptime Kuma | ✅ Operational | Running on pi01; monitor list being documented |
-| NetBox IPAM | ✅ Operational| Running on pi02; backing up to mounted USB drive |
+| NetBox IPAM | ✅ Operational | Running on pi02; backing up to mounted USB drive |
 | Firewall rules doc | 🔄 In Progress | Drafting |
 | VLANs | 🔄 In Progress | Implementing on Cisco SG350 with pfSense inter-VLAN routing |
 

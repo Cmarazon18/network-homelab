@@ -13,11 +13,11 @@ The primary reason Proxmox exists in this stack is to run pfSense as a VM. The H
 | Property | Value |
 |---|---|
 | Hardware | HP All-in-One PC |
-| Proxmox Version | <!-- fill in --> |
+| Proxmox Version | 9.1.1 (Kernel 6.17.2-1-pve) |
 | Management IP | 192.168.145.200 |
-| CPU | <!-- fill in --> |
-| RAM | <!-- fill in --> |
-| Storage | <!-- fill in --> |
+| CPU | AMD A9-9425 (2 cores) |
+| RAM | 7.2 GB |
+| Storage | 931.5 GB HDD (LVM-thin) |
 
 ---
 
@@ -38,9 +38,7 @@ The USB adapter was added specifically to give pfSense a dedicated LAN-facing in
 
 | VM | OS | Purpose | vCPU | RAM | Disk | Status |
 |---|---|---|---|---|---|---|
-| pfSense | pfSense | Firewall, router, DHCP server | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | Running |
-
-> **Note:** Resource allocation details to be updated after review in Proxmox UI.
+| pfSense | pfSense CE | Firewall, router, DHCP server | 2 vCPU | 3 GB | 20 GB | Running |
 
 ---
 

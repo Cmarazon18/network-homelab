@@ -2,7 +2,7 @@
 
 ## Purpose
 **Netdata:** Provides real time system metrics for devices in the home lab. The live metrics are available online via the netdata cloud website.
-**Uptime Kuma:** Provides real time monitoring of service availability via ping tests. The pi-hole server is monitored by a DNS test inside netdata. All monitors run on intervals of 20 seconds.
+**Uptime Kuma:** Provides real time monitoring of service availability via ping tests. The Pi-hole server is monitored by a DNS test inside Uptime Kuma. All monitors run on intervals of 20 seconds.
 Both run as Docker containers on the Monitoring Server (Raspberry Pi). The goal is to maintain visibility into host health and service uptime across the lab subnet.
 
 ## Infrastructure
@@ -26,7 +26,7 @@ stacks are deployed in production environments.
 
 ## Installation
 ### 1. Install Docker
-Docker was installed on the Monitoring Server before deploying either tool. Docker was installed using the `curl -fsSL https://get.docker.com | sudo bash`  after updating ubuntu server.
+Docker was installed on the Monitoring Server before deploying either tool. Docker was installed using the `curl -fsSL https://get.docker.com | sudo bash`  after updating Ubuntu server.
 
 ### 2. Deploy Netdata via Docker Compose
 Netdata was deployed using its official Docker Compose configuration. 
@@ -49,7 +49,7 @@ docker compose up -d
 After deployment, monitors were added through the Uptime Kuma web UI for each lab service.
 | Service | Check type | Target |
 |---|---|---|
-| pfSense server | Ping | `http://192.168.200.1` |
+| pfSense server | Ping | `192.168.200.1` |
 | Pi-hole admin | HTTP | `http://192.168.200.6/admin`|
 |Home Router | Ping | `192.168.145.1`| 
 
