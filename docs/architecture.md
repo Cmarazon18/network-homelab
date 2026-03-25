@@ -29,7 +29,7 @@ The lab uses 3 main IP address ranges.
 |Network | Subnet | Purpose |
 |---|---|---|
 |Home Network |`192.168.145.0/24` | Main home network, separate from lab |
-|Lab Network | `192.168.200.0/24` | Main lab subnet, managed by pfSense |
+|Lab Network (VLAN 1) | `192.168.200.0/24` | Main lab subnet, managed by pfSense |
 |Test Machines(VLAN 10) | `192.168.10.0/24` | Isolated subnet for intentionally vulnerable machines |
 
 ---
@@ -41,7 +41,7 @@ The pfSense VM serves as the central router and firewall for all VLANs. Inter-VL
 Pi-hole on pi02 is the primary DNS resolver for all the lab devices. pfSense distributes the Pi-hole IP as the primary DNS server via DHCP, and forwards any requests it receives to Pi-hole. Pi-hole then performs recursive resolution for all queries, with filtering rules applied to block ads and malicious domains. This architecture allows for centralized DNS management and monitoring through Pi-hole's dashboard, while pfSense handles DHCP and routing for the lab network.
 ## Implementation Status
  
-The core architecture is designed and partially implemented. VLAN segmentation is currently in progress.
+The core architecture is designed and partially implemented. VLAN segmentation is complete.
  
 | Component | Status |
 |---|---|
@@ -51,7 +51,7 @@ The core architecture is designed and partially implemented. VLAN segmentation i
 | NetBox (pi02) | ✅ Operational |
 | Netdata + Uptime Kuma (pi01) | ✅ Operational |
 | Cisco SG350 managed switch | ✅ Online |
-| VLAN configuration (SG350 + pfSense) | 🔄 In Progress |
+| VLAN configuration (SG350 + pfSense) | ✅ Completed |
 | Network diagram | ⏳ Planned |
  
 ---

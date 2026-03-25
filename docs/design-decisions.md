@@ -16,9 +16,9 @@ where IPAM is internal infrastructure.
 PHP IPAM is less industry-recognized than NetBox.
 
 
-## Four-VLAN Network Segmentation Design
+## VLAN Network Segmentation Design
 
-**Status:** Active
+**Status:** Completed
 
 ### Context
 The lab runs several categories of devices with very different trust levels — core 
@@ -30,17 +30,12 @@ with no barriers. A segmented design was needed to contain blast radius and enfo
 trust boundaries between device categories.
 
 ### Decision
-Implemented a four-VLAN scheme on the Cisco SG350 with pfSense handling inter-VLAN 
-routing via subinterfaces, dividing the network into Infrastructure, Management & 
-Monitoring, Clients, and Security Lab segments.
+Implemented a two-VLAN scheme on the Cisco SG350 with pfSense handling inter-VLAN 
+routing via subinterfaces, dividing the network into 2 VLANS, main lab devices and the security lab.
 
 ### Reasoning
 - Security lab workloads need to be isolated by design — experiments with untrusted 
   tools or configurations should not have unrestricted access to core infrastructure
-- Infrastructure and management devices benefit from static, predictable addressing 
-  separate from general client traffic
-- Separating monitoring onto its own VLAN ensures visibility into all segments 
-  without placing monitoring tools at the same trust level as the devices they watch
 - The Cisco SG350 supports 802.1Q trunking natively, making VLAN enforcement 
   manageable at the switch level rather than relying on software controls alone
 
@@ -49,7 +44,6 @@ Monitoring, Clients, and Security Lab segments.
 | Option | Why Rejected |
 |--------|--------------|
 | Single flat network | No lateral movement protection — a compromise anywhere affects everything |
-| Two-VLAN split (lab vs. everything else) | Too coarse — doesn't separate security lab risk from core infrastructure |
 | Dedicated physical switches per segment | Cost and physical complexity not justified at this lab scale |
 
 ### Tradeoffs & Accepted Risks
@@ -60,6 +54,4 @@ implementation approach (trunk and VLANs before moving switch management) was
 established as a direct result of that failure.
 
 ### Outcome
-VLAN implementation is in progress following a switch factory reset. The corrected 
-implementation sequence has been established and is being executed methodically to 
-avoid repeat access loss.
+VLAN implementation has been completed. Even though there are currently no devices on the security lab VLAN, it exists and is a container for future intentionally vulnerable devices.

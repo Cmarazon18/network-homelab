@@ -19,7 +19,7 @@ Established the core infrastructure that everything else builds on. This phase f
 
 ---
 
-## Phase 2 — Network Segmentation `[In Progress]`
+## Phase 2 — Network Segmentation `[Complete]`
 
 Introducing VLAN-based segmentation to isolate traffic by function and reduce the blast radius of any single compromised device or misconfiguration.
 
@@ -62,7 +62,7 @@ With segmentation in place, the focus shifts to making the lab easier to operate
 The long-term goal is a dedicated environment for offensive and defensive security practice — isolated from production infrastructure and purpose-built for hands-on security work.
 
 **What this looks like:**
-- A separate network segment (or additional VLAN) with no connectivity to production lab resources
+- A separate network segment (additional VLAN) with no connectivity to production lab resources
 - Vulnerable-by-design targets (e.g., Metasploitable, DVWA, custom VMs) for practice
 - Defensive tooling — likely an IDS/IPS such as Snort or Suricata — to monitor and analyze traffic within the segment
 - Structured around the skills being built toward CompTIA Security+ and beyond
