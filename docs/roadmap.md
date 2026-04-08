@@ -19,7 +19,7 @@ Established the core infrastructure that everything else builds on. This phase f
 
 ---
 
-## Phase 2 — Network Segmentation `[In Progress]`
+## Phase 2 — Network Segmentation `[Complete]`
 
 Introducing VLAN-based segmentation to isolate traffic by function and reduce the blast radius of any single compromised device or misconfiguration.
 
@@ -28,6 +28,7 @@ Introducing VLAN-based segmentation to isolate traffic by function and reduce th
 |------|------|---------|
 | 1 | Main Lab | Primary lab subnet — production infrastructure and services |
 | 10 | Testing / Unsecured Devices | Isolated segment for experimental configs and untrusted devices |
+| 20 | VoIP | Seperate VLAN and subnet for all VoIP traffic |
 
 **What this phase involves:**
 - Configuring VLANs on the Cisco SG350 with appropriate trunk and access port assignments
@@ -36,6 +37,8 @@ Introducing VLAN-based segmentation to isolate traffic by function and reduce th
 - Moving switch management access to a controlled interface once segmentation is stable
 
 **Outcome:** Traffic isolation between production and testing environments, with firewall-enforced boundaries between segments.
+
+> **Note** Firewall rules are still being tested and adapted to provide better segmententation. 
 
 ---
 

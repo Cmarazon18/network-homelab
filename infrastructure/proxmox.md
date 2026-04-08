@@ -38,9 +38,9 @@ The USB adapter was added specifically to give pfSense a dedicated LAN-facing in
 
 | VM | OS | Purpose | vCPU | RAM | Disk | Status |
 |---|---|---|---|---|---|---|
-| pfSense | pfSense | Firewall, router, DHCP server | <!-- fill in --> | <!-- fill in --> | <!-- fill in --> | Running |
+| pfSense | pfSense | Firewall, router, DHCP server | 2 vCPU | 2.98 GiB | 20 GB | Running |
+| freePBX | Debian, FreePBX 17/Asterisk 23 | PBX Phone server for lab | 1 vCPU | 2 GiB | 32 GB | Running |
 
-> **Note:** Resource allocation details to be updated after review in Proxmox UI.
 
 ---
 

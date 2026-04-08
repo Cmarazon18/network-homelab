@@ -19,7 +19,8 @@ Complete inventory of all physical and virtual devices in the homelab environmen
 
 | VM | Host | Role | OS | IP Address |
 |----|------|------|----|------------|
-| pfSense | Proxmox Host | Firewall / Router / DHCP | pfSense CE | 192.168.200.1 (LAN) |
+| pfSense | pve01 | Firewall / Router / DHCP | pfSense CE | 192.168.200.1 (LAN) |
+| freePBX | pve01 | PBX VoIP Server. | Debian, FreePBX 17/Asterisk 23 | 192.168.20.5 (VLAN 20) |
 
 ---
 
@@ -31,16 +32,7 @@ Complete inventory of all physical and virtual devices in the homelab environmen
 - **OS:** Proxmox VE
 - **Management IP:** 192.168.145.200
 - **WAN Connectivity:** Belkin USB-to-Ethernet adapter connected to home Wi-Fi bridge
-- **Hosted VMs:** pfSense
-
----
-
-### pfSense (VM)
-- **Host:** Proxmox Host
-- **Role:** Firewall, router, NAT, DHCP server, DNS distributor for lab subnet
-- **OS:** pfSense CE
-- **LAN IP:** 192.168.200.1
-- **Notes:** Handles inter-VLAN routing via subinterfaces. Distributes pi02 (192.168.200.6) as primary DNS to all lab devices, with 192.168.200.1 as fallback.
+- **Hosted VMs:** pfSense and freePBX
 
 ---
 
@@ -80,5 +72,6 @@ Complete inventory of all physical and virtual devices in the homelab environmen
 | 192.168.145.0/24 | Home Wi-Fi network (upstream) |
 | 192.168.200.0/24 | Lab subnet — managed by pfSense |
 | 192.168.10.0/24 | VLAN 10 — Intentionally Vulnerable Test Machines|
+| 192.168.20.0/24 | VoIP VLAN
 
 ---

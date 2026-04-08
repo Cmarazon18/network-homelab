@@ -7,6 +7,7 @@ This document outlines the IP addressing scheme and VLAN segmentation for the ho
 |---|---|---|---|
 || VLAN 1 | `192.168.200.0/24` | Main lab network | `192.168.200.1` (pfSense) |
 | VLAN 10 | `192.168.10.0/24` | Security lab (intentionally vulnerable devices) | `192.168.10.1` (pfSense) |
+| VLAN 20 | 192.168.20.0/24 | VoIP VLAN | `192.168.20.1` (pfSense) |
 
 ---
 ## VLAN 1 — Address Allocation (`192.168.200.0/24`)
@@ -25,6 +26,16 @@ Reserved for intentionally vulnerable machines used in cybersecurity testing and
  
 Addressing details will be documented once the VLAN is fullyimplemented.
  
+---
+
+## VLAN 20 - Address Allocation (`192.168.20.0/24`)
+| Range | Role | Assignment Method |
+| ----- | ---- | ----------------- |
+| `.1` | Gateway (pfSense) | Static |
+| `.5` | FreePBX Server | Static |
+| `.10 - .50` | DHCP Pool for IP Phones | DHCP |
+| `51-255` | Unused | - | 
+
 ---
 
 ## Additional Notes

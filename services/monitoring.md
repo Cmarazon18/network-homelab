@@ -47,11 +47,19 @@ docker compose up -d
 
 ### 4. Configure Uptime Kuma Monitor
 After deployment, monitors were added through the Uptime Kuma web UI for each lab service.
-| Service | Check type | Target |
-|---|---|---|
-| pfSense server | Ping | `http://192.168.200.1` |
-| Pi-hole admin | HTTP | `http://192.168.200.6/admin`|
-|Home Router | Ping | `192.168.145.1`| 
+| Service | Check type | Target | VLAN |
+|---|---|---| --- |
+| pfSense server | Ping | `http://192.168.200.1` | 1 |
+| Lab Pi-hole admin | HTTP | `http://192.168.200.6/admin`| 1 |
+| Home Router | Ping | `192.168.145.1`| N/A |
+| PBX Server | HTTP | `192.168.20.5` | 20 | 
+| Home Network pi-hole | Ping | `192.168.145.3` | N/A |
+| pi01 | Ping | `192.168.200.5` | 1 |
+| pi02 | Ping | `192.168.200.56` | 1 |
+| sw01 webUI | HTTP | `192.168.200.7` | 1 |
+| Proxmox UI | HTTP | `192.168.145.200`| N/A |
+
+> Monitors marked with **N/A** as their VLAN are not members of a VLAN, as they are part of the main home network.
 
 ## Current Status
 - Netdata agent is connected to cloud and reporting live metrics.

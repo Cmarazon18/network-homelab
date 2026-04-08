@@ -12,6 +12,7 @@ The lab does not have a direct internet connection. WAN access is provided throu
 |---|---|---|---|
 | Proxmox Host | Hypervisor | HP All-in-One (repurposed) | Proxmox VE |
 | pfSense VM | Firewall / Router | VM on Proxmox Host | pfSense |
+| freePBX VM | PBX Phone Server | VM on Proxmox Host | FreePBX Debain |
 | pi01 | Monitoring Server | Raspberry Pi | Ubuntu Server 24.04 LTS |
 | pi02 | DNS / IPAM Server | Raspberry Pi 4 | Ubuntu Server 24.04 LTS |
 | Lab Switch | Network Switching | Cisco SG350 | Cisco IOS |
@@ -31,6 +32,7 @@ The lab uses 3 main Ip address ranges.
 |Home Network |`192.168.145.0/24` | Main home network, separate from lab |
 |Lab Network | `192.168.200.0/24` | Main lab subnet, managed by pfSense |
 |Test Machines(VLAN 10) | `192.168.10.0/24` | Isolated subnet for intentionally vulnerable machines |
+|PBX Phone Server(VLAN 20)| `192.168.20.0/24` | Isolated subnet for VoIP traffic |
 
 ---
 
@@ -51,7 +53,7 @@ The core architecture is designed and partially implemented. VLAN segmentation i
 | NetBox (pi02) | ✅ Operational |
 | Netdata + Uptime Kuma (pi01) | ✅ Operational |
 | Cisco SG350 managed switch | ✅ Online |
-| VLAN configuration (SG350 + pfSense) | 🔄 In Progress |
+| VLAN configuration (SG350 + pfSense) | ✅ Operational |
 | Network diagram | ⏳ Planned |
  
 ---

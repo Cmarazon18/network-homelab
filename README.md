@@ -53,7 +53,8 @@ This lab is intentionally tied to concepts I learn in class. It is meant to take
 └── services/               ← Per-service documentation for each deployed component
     ├── monitoring.md
     ├── netbox.md
-    └── pihole.md
+    ├── pihole.md
+    └── freepbx.md
 ```
 Each file in `network/` contains the documentation for that specific aspect of the network.
  
@@ -69,7 +70,7 @@ Each file in `services/` is self-contained documentation for a single deployed s
 | Uptime Kuma | ✅ Operational | Running on pi01; monitor list being documented |
 | NetBox IPAM | ✅ Operational| Running on pi02; backing up to mounted USB drive |
 | Firewall rules doc | 🔄 In Progress | Drafting |
-| VLANs | 🔄 In Progress | Implementing on Cisco SG350 with pfSense inter-VLAN routing |
+| VLANs | ✅ Complete | Implemented on Cisco SG350 with pfSense inter-VLAN routing |
 
 ---
 
