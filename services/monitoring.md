@@ -2,7 +2,7 @@
 
 ## Purpose
 **Netdata:** Provides real time system metrics for devices in the home lab. The live metrics are available online via the netdata cloud website.
-**Uptime Kuma:** Provides real time monitoring of service availability via ping tests. The pi-hole server is monitored by a DNS test inside netdata. All monitors run on intervals of 20 seconds.
+**Uptime Kuma:** Provides real time monitoring of service availability via ping tests. The Pi-hole server is monitored by a DNS test inside Uptime Kuma. All monitors run on intervals of 20 seconds.
 Both run as Docker containers on the Monitoring Server (Raspberry Pi). The goal is to maintain visibility into host health and service uptime across the lab subnet.
 
 ## Infrastructure
@@ -26,7 +26,7 @@ stacks are deployed in production environments.
 
 ## Installation
 ### 1. Install Docker
-Docker was installed on the Monitoring Server before deploying either tool. Docker was installed using the `curl -fsSL https://get.docker.com | sudo bash`  after updating ubuntu server.
+Docker was installed on the Monitoring Server before deploying either tool. Docker was installed using the `curl -fsSL https://get.docker.com | sudo bash`  after updating Ubuntu server.
 
 ### 2. Deploy Netdata via Docker Compose
 Netdata was deployed using its official Docker Compose configuration. 
@@ -47,6 +47,7 @@ docker compose up -d
 
 ### 4. Configure Uptime Kuma Monitor
 After deployment, monitors were added through the Uptime Kuma web UI for each lab service.
+<<<<<<< HEAD
 | Service | Check type | Target | VLAN |
 |---|---|---| --- |
 | pfSense server | Ping | `http://192.168.200.1` | 1 |
@@ -60,6 +61,13 @@ After deployment, monitors were added through the Uptime Kuma web UI for each la
 | Proxmox UI | HTTP | `192.168.145.200`| N/A |
 
 > Monitors marked with **N/A** as their VLAN are not members of a VLAN, as they are part of the main home network.
+=======
+| Service | Check type | Target |
+|---|---|---|
+| pfSense server | Ping | `192.168.200.1` |
+| Pi-hole admin | HTTP | `http://192.168.200.6/admin`|
+|Home Router | Ping | `192.168.145.1`| 
+>>>>>>> 97f57b131645603734073f817f786c4ad1507110
 
 ## Current Status
 - Netdata agent is connected to cloud and reporting live metrics.
