@@ -1,154 +1,61 @@
-<<<<<<< HEAD
-# Cameron's Homelab
+# Homelab Network & Security Environment
 
-A working infrastructure lab built and documented by a high school cybersecurity student — designed to develop real skills in networking, systems administration, and security operations. The lab runs on a dedicated subnet behind a pfSense firewall VM, double-NAT'd off my home network. All devices connect through a physical switch.
+This repository contains documentation and configurations for a segmented homelab focused on networking, security, and infrastructure troubleshooting.
 
-
----
-
-## Who this is for
-This repository contains all documentation for my personal homelab. It's designed for two main audiences, *future me* and *anyone evaluating my work* who wants to see *how I think*, *what I build* and *how I document it*. 
-
-## Real world roles I'm practicing
-**Network Engineer**
-I design and operate a segmented lab network run by a virtualized instance of pfSense on a proxmox hypervisor. This includes configuration for DHCP, DNS forwarding, and NAT and Firewall Rules as well as routing across the `192.168.200.0 /24 ` subnet - isolated from my home network and managed separately.
-
-**Systems Administrator**
-I manage and deploy services across different types of devices such as Proxmox Hypervisors and Raspberry Pi Servers. Current stack includes, DNS filtering, IP address management, real time system monitoring, and uptime tracking.
+The lab is actively developed and reflects real-world configuration changes, failures, and iterative improvements.
 
 ---
 
-## Deployed Services
-The lab runs a core stack of self-hosted services across two Raspberry Pi servers — including DNS filtering, real-time monitoring, uptime tracking, and IP address management. Full documentation for each service lives in the `services/` folder.
+## Overview
 
----
-## What I'm learning
-This lab is intentionally tied to concepts I learn in class. It is meant to take what I learn in class and deploy it on a real infrastructure. It also allows me to experiment with new concepts that extend my learning in the classroom.
-
-- **Routing and NAT -** I am learning how firewalls handle traffic between the lab subnet and the internet, including double-NAT behavior and its tradeoffs.
-- **DNS Architecture -** Recursive resolution, DNS stub listeners, upstream forwarding, and how filtering layers (Pi-hole) fit into the resolution chain
-- **Network Segmentation -**  Why subnets matter and how they work, how DHCP scope and Gateway Configurations enforce boundaries, as well as what VLANS add.
-- **Container orchestration** — Writing and managing Docker Compose stacks, understanding service dependencies, volume mounts, and port conflicts
-- **Infrastructure documentation** — Modeling documentation after professional practices: architecture decisions, configuration records, and change rationale — not just "here's what I installed"
-- **IPAM concepts** — Using NetBox to track IP allocations, subnet ownership, and device records the way an enterprise network team would
- 
----
-
-## Repository Structure
-
-```
-/
-├── README.md               ← You are here
-├── docs/                   ← Main documentation
-│   ├── architecture.md
-│   ├── design-decisions.md
-│   └── roadmap.md
-├── infrastructure/         ← Physical and virtual hardware documentation
-│   ├── device-inventory.md
-│   ├── overview.md
-│   └── proxmox.md
-├── network/                ← Network architecture and configuration docs
-│   ├── dns-filtering.md
-│   ├── ip-address-plan.md
-│   └── overview.md
-└── services/               ← Per-service documentation for each deployed component
-    ├── monitoring.md
-    ├── netbox.md
-    ├── pihole.md
-    └── freepbx.md
-```
-Each file in `network/` contains the documentation for that specific aspect of the network.
- 
-Each file in `services/` is self-contained documentation for a single deployed service.
-
-## Current Status
- 
-| Area | Status | Notes |
-|---|---|---|
-| pfSense firewall / routing | ✅ Operational | NAT, DHCP, DNS forwarding all active |
-| Pi-hole DNS filtering | ✅ Operational | Confirmed blocking ads lab-wide |
-| Netdata monitoring | ✅ Operational | Running on pi01 |
-| Uptime Kuma | ✅ Operational | Running on pi01; monitor list being documented |
-| NetBox IPAM | ✅ Operational| Running on pi02; backing up to mounted USB drive |
-| Firewall rules doc | 🔄 In Progress | Drafting |
-| VLANs | ✅ Complete | Implemented on Cisco SG350 with pfSense inter-VLAN routing |
+- Multi-VLAN network using pfSense (bare metal)
+- Managed switching with VLAN trunking
+- Segmented environments for lab, VoIP, and IoT
+- Self-hosted infrastructure and monitoring services
 
 ---
 
+## Documentation Structure
 
-=======
-# Cameron's Homelab
+All detailed documentation is separated into dedicated files:
 
-A working infrastructure lab built and documented by a high school cybersecurity student — designed to develop real skills in networking, systems administration, and security operations. The lab runs on a dedicated subnet behind a pfSense firewall VM, double-NAT'd off my home network. All devices connect through a physical switch.
-
-
----
-
-## Who this is for
-This repository contains all documentation for my personal homelab. It's designed for two main audiences, *future me* and *anyone evaluating my work* who wants to see *how I think*, *what I build* and *how I document it*. 
-
-## Real world roles I'm practicing
-**Network Engineer**
-I design and operate a segmented lab network run by a virtualized instance of pfSense on a proxmox hypervisor. This includes configuration for DHCP, DNS forwarding, and NAT and Firewall Rules as well as routing across the `192.168.200.0/24` subnet - isolated from my home network and managed separately.
-
-**Systems Administrator**
-I manage and deploy services across different types of devices such as Proxmox Hypervisors and Raspberry Pi Servers. Current stack includes, DNS filtering, IP address management, real time system monitoring, and uptime tracking.
+- Network topology and architecture → `/docs/network/`
+- VLAN configuration and IP addressing → `/docs/network/vlans.md`
+- Firewall rules and segmentation → `/docs/network/firewall.md`
+- Services and infrastructure → `/docs/services/`
+- DNS configuration → `/docs/network/dns.md`
+- Troubleshooting and failure cases → `/docs/troubleshooting/`
 
 ---
 
-## Deployed Services
-The lab runs a core stack of self-hosted services across two Raspberry Pi servers — including DNS filtering, real-time monitoring, uptime tracking, and IP address management. Full documentation for each service lives in the `services/` folder.
+## Infrastructure
 
----
-## What I'm learning
-This lab is intentionally tied to concepts I learn in class. It is meant to take what I learn in class and deploy it on a real infrastructure. It also allows me to experiment with new concepts that extend my learning in the classroom.
+Hardware and service details are documented here:
 
-- **Routing and NAT -** I am learning how firewalls handle traffic between the lab subnet and the internet, including double-NAT behavior and its tradeoffs.
-- **DNS Architecture -** Recursive resolution, DNS stub listeners, upstream forwarding, and how filtering layers (Pi-hole) fit into the resolution chain
-- **Network Segmentation -**  Why subnets matter and how they work, how DHCP scope and Gateway Configurations enforce boundaries, as well as what VLANS add.
-- **Container orchestration** — Writing and managing Docker Compose stacks, understanding service dependencies, volume mounts, and port conflicts
-- **Infrastructure documentation** — Modeling documentation after professional practices: architecture decisions, configuration records, and change rationale — not just "here's what I installed"
-- **IPAM concepts** — Using NetBox to track IP allocations, subnet ownership, and device records the way an enterprise network team would
- 
----
-
-## Repository Structure
-
-```
-/
-├── README.md               ← You are here
-├── docs/                   ← Main documentation
-│   ├── architecture.md
-│   ├── design-decisions.md
-│   └── roadmap.md
-├── infrastructure/         ← Physical and virtual hardware documentation
-│   ├── device-inventory.md
-│   └── proxmox.md
-├── network/                ← Network architecture and configuration docs
-│   ├── dns-filtering.md
-│   └── ip-address-plan.md
-└── services/               ← Per-service documentation for each deployed component
-    ├── monitoring.md
-    ├── netbox.md
-    └── pihole.md
-```
-Each file in `network/` contains the documentation for that specific aspect of the network.
- 
-Each file in `services/` is self-contained documentation for a single deployed service.
-
-## Current Status
- 
-| Area | Status | Notes |
-|---|---|---|
-| pfSense firewall / routing | ✅ Operational | NAT, DHCP, DNS forwarding all active |
-| Pi-hole DNS filtering | ✅ Operational | Confirmed blocking ads lab-wide |
-| Netdata monitoring | ✅ Operational | Running on pi01 |
-| Uptime Kuma | ✅ Operational | Running on pi01; monitor list being documented |
-| NetBox IPAM | ✅ Operational | Running on pi02; backing up to mounted USB drive |
-| Firewall rules doc | 🔄 In Progress | Drafting |
-| VLANs | 🔄 In Progress | Implementing on Cisco SG350 with pfSense inter-VLAN routing |
+- Hardware inventory → `/docs/infrastructure/hardware.md`
+- Service stack (Pi-hole, NetBox, etc.) → `/docs/services/overview.md`
 
 ---
 
+## Design Notes
 
->>>>>>> 97f57b131645603734073f817f786c4ad1507110
+- WAN operates behind a home network (double NAT)
+- VLAN segmentation is used for isolation and testing
+- Firewall rules follow a least-privilege model
+
+---
+
+## Purpose
+
+This project is used to:
+
+- Develop networking and cybersecurity skills
+- Simulate real infrastructure environments
+- Practice troubleshooting and root cause analysis
+- Document system design and changes over time
+
+---
+
+## Status
+
+This lab is continuously evolving.  

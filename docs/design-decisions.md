@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Design Decisions
 This document outlines the design decisions made during the development of this project. It serves as a reference for understanding the rationale behind certain choices and can help guide future development.
 
@@ -19,7 +18,7 @@ PHP IPAM is less industry-recognized than NetBox.
 
 ## VLAN Segmentation Scheme
   
-**Status:** Active (third iteration)
+**Status:** Active (Fourth)
 
 ### Context
 
@@ -32,8 +31,9 @@ Implemented a three-VLAN scheme using the Cisco SG350 for 802.1Q enforcement and
 | VLAN | Subnet | Purpose |
 |------|--------|---------|
 | VLAN 1 (native) | `192.168.200.0/24` | Main lab — all production infrastructure |
-| VLAN 10 | `192.168.10.0/24` | Security lab — intentionally vulnerable test machines |
+| VLAN 10 | `192.168.10.0/24` | Clients - All clients such as PC's Smart TVs etc |
 | VLAN 20 | `192.168.20.0/24` | VoIP — FreePBX, SIP phones |
+| VLAN 30 | `192.168.30.0/24` | IoT - Smart Home Devices |
 
 ### Reasoning
 
@@ -61,7 +61,7 @@ Implemented a three-VLAN scheme using the Cisco SG350 for 802.1Q enforcement and
 
 ### Outcomes
 
-The scheme has survived three iterations. The original four-VLAN /26 design failed during implementation and taught a critical lesson about sequencing switch configuration changes (always establish the trunk before moving management). The simplified two-VLAN design proved stable and was extended cleanly to three VLANs when FreePBX gave a real use case for a third segment. Adding VLAN 20 required no changes to existing VLAN 1 or 10 configuration — just a new VLAN on the SG350 trunk, a new pfSense subinterface, and a tagged VM NIC in Proxmox.
+The scheme has survived three iterations. The original four-VLAN /26 design failed during implementation and taught a critical lesson about sequencing switch configuration changes (always establish the trunk before moving management). The simplified two-VLAN design proved stable and was extended cleanly to three VLANs when FreePBX gave a real use case for a third segment. Adding VLAN 20 required no changes to existing VLAN 1 or 10 configuration — just a new VLAN on the SG350 trunk, and a new pfSense subinterface.
 
 
 
@@ -93,62 +93,3 @@ Inter-VLAN routing adds complexity. The softphone on VLAN 1 must register to Fre
  
 ### Outcome
 VLAN 20 is operational. FreePBX, two desk phones, and a cross-VLAN softphone are all working. The segmentation exposed real troubleshooting scenarios (firewall protocol selection breaking DNS, SIP port mismatches across VLANs) that wouldn't have surfaced on a flat network.
-=======
-# Design Decisions
-This document outlines the design decisions made during the development of this project. It serves as a reference for understanding the rationale behind certain choices and can help guide future development.
-
-## Self-Hosted NetBox Over Cloud-Hosted Options
-
-Chose to run NetBox locally via Docker Compose rather than using the NetBox Cloud 
-free tier.
-
-**Reasoning:** The free tier of NetBox Cloud has a data retention limit — when the 
-trial expired, all data was lost. Self-hosting gives full control over the database 
-and ensures continuity. It also better reflects real-world enterprise deployments 
-where IPAM is internal infrastructure.
-
-**Alternatives considered:** NetBox Cloud (free tier), PHP IPAM  
-**Rejected because:** Cloud trial caused actual data loss during this build. 
-PHP IPAM is less industry-recognized than NetBox.
-
-
-## VLAN Network Segmentation Design
-
-**Status:** Completed
-
-### Context
-The lab runs several categories of devices with very different trust levels — core 
-infrastructure (pfSense, NetBox), monitoring systems, and a dedicated security lab 
-segment intended for running potentially hostile or untested workloads. Running 
-everything on a single flat network meant that any compromise in one area, 
-particularly the security lab, could spread laterally to critical infrastructure 
-with no barriers. A segmented design was needed to contain blast radius and enforce 
-trust boundaries between device categories.
-
-### Decision
-Implemented a two-VLAN scheme on the Cisco SG350 with pfSense handling inter-VLAN 
-routing via subinterfaces, dividing the network into 2 VLANS, main lab devices and the security lab.
-
-### Reasoning
-- Security lab workloads need to be isolated by design — experiments with untrusted 
-  tools or configurations should not have unrestricted access to core infrastructure
-- The Cisco SG350 supports 802.1Q trunking natively, making VLAN enforcement 
-  manageable at the switch level rather than relying on software controls alone
-
-### Alternatives Considered
-
-| Option | Why Rejected |
-|--------|--------------|
-| Single flat network | No lateral movement protection — a compromise anywhere affects everything |
-| Dedicated physical switches per segment | Cost and physical complexity not justified at this lab scale |
-
-### Tradeoffs & Accepted Risks
-Adds configuration complexity — inter-VLAN routing rules, trunk port setup, and 
-DHCP scopes all have to be maintained in sync. During initial implementation this 
-caused access loss that required a factory reset of the switch. The ordered 
-implementation approach (trunk and VLANs before moving switch management) was 
-established as a direct result of that failure.
-
-### Outcome
-VLAN implementation has been completed. Even though there are currently no devices on the security lab VLAN, it exists and is a container for future intentionally vulnerable devices.
->>>>>>> 97f57b131645603734073f817f786c4ad1507110

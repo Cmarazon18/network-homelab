@@ -59,6 +59,7 @@ After deployment, monitors were added through the Uptime Kuma web UI for each la
 | pi02 | Ping | `192.168.200.56` | 1 |
 | sw01 webUI | HTTP | `192.168.200.7` | 1 |
 | Proxmox UI | HTTP | `192.168.145.200`| N/A |
+|Freeobx Server| HTTP | `192.168.20.5` |
 
 > Monitors marked with **N/A** as their VLAN are not members of a VLAN, as they are part of the main home network.
 =======

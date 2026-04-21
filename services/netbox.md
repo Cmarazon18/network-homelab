@@ -25,5 +25,7 @@ A previous instance that was hosted on a NetBox Cloud trial expired and resulted
 
 ## Tracked Network Prefixes
 - `192.168.145.0/24`- Home Wifi Network
-- `192.168.200.0/24` - Lab subnet (managed by pfSense)
-- `192.168.10.0/24` - Cybersecurity testing lab (intentionally vulnerable VMs.)
+- `192.168.200.0/24` - Lab Infrastructure subnet (managed by pfSense)
+- `192.168.10.0/24` - Lab Clients (Computers, TVs, Smartphones, ETC.)
+- `192.168.20.0/24` - VoIP VLAN
+- `192.168.30.0/24 ` - IoT Devices
