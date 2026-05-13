@@ -52,3 +52,4 @@ Addressing details will be documented once the VLAN is fullyimplemented.
 - The `.21–.99` range is intentionally unassigned to allow future expansion for servers or VMs without overlapping the DHCP pool.
 - The `.251–.254` range is reserved for potential future use, such as additional infrastructure devices or special-purpose servers that require static IPs outside the DHCP pool.
 - Netmasks are being considerd to reduce the amount of unused addresses on each network.
+- As described in `services/tailscale.md` VPN clients are treated similarly to trusted VLAN 10 Clients

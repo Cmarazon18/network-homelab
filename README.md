@@ -26,14 +26,6 @@ All detailed documentation is separated into dedicated files:
 - DNS configuration → `/docs/network/dns.md`
 - Troubleshooting and failure cases → `/docs/troubleshooting/`
 
----
-
-## Infrastructure
-
-Hardware and service details are documented here:
-
-- Hardware inventory → `/docs/infrastructure/hardware.md`
-- Service stack (Pi-hole, NetBox, etc.) → `/docs/services/overview.md`
 
 ---
 
