@@ -25,6 +25,9 @@ Proxmox VE is the hypervisor running on the lab's primary physical host — a re
 | VM | OS | Purpose | vCPU | RAM | Disk | Status |
 |---|---|---|---|---|---|---|
 | freePBX | Debian, FreePBX 17/Asterisk 23 | PBX Phone server for lab | 1 vCPU | 2 GiB | 32 GB | Running |
+| Monitoring Stack | Debian | Host for grafana monitoring page and its database | 1 vCPU | 2 GiB | 20 GB | Running| 
+| HomeAssistant | HomeAssistant OS | Central controller for smart home devices | 2vCPU |  3 GiB | 50 GB | Stopped |
+> The home assistant VM is stopped due to a compatibility issue with WeMo Smart Plugs and will be re-activated when smart home devices are updated.
 
 
 ---
