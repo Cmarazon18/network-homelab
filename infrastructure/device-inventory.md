@@ -12,7 +12,8 @@ Complete inventory of all physical and virtual devices in the homelab environmen
 | pi01 | Raspberry Pi 3 | Monitoring Server | Ubuntu Server 24.04 LTS | 192.168.200.5 | Home Lab |
 | pi02 | Raspberry Pi 4 | DNS Filtering / IPAM | Ubuntu Server 24.04 LTS | 192.168.200.6 | Home Lab |
 | Lab Switch | Cisco SG350 | Managed Switch | — | 192.168.200.7 | Home Lab |
-| pfSense Host | Protectli Mini-PC | freeBSD pfSense | 192.168.200.1 | Home Lab |
+| pfSense Host | Protectli Mini-PC | Router and Firewall | freeBSD pfSense | 192.168.200.1 | Home Lab |
+| Wireless AP | Aruba IAP-325 | Main Lab Multi-Vlan wireless access point| Aruba Instant | 192.168.200.10| Home Lab |
 
 ---
 
